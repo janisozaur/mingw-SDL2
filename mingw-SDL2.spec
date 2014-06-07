@@ -2,7 +2,7 @@
 
 Name:           mingw-SDL2
 Version:        2.0.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        MinGW Windows port of SDL2 cross-platform multimedia library
 
 License:        LGPLv2+
@@ -104,6 +104,9 @@ find $RPM_BUILD_ROOT -name "*.la" -delete
 
 
 %changelog
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.0.3-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Fri May 16 2014 Marcel Wysocki <maci@satgnu.net> - 2.0.3-3
 - Fix rpmlint warnings
 
