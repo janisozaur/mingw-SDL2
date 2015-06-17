@@ -2,7 +2,7 @@
 
 Name:           mingw-SDL2
 Version:        2.0.3
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        MinGW Windows port of SDL2 cross-platform multimedia library
 
 License:        LGPLv2+
@@ -112,6 +112,9 @@ find $RPM_BUILD_ROOT -name "*.la" -delete
 
 
 %changelog
+* Wed Jun 17 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.0.3-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
 * Sun Mar 29 2015 Erik van Pienbroek <epienbro@fedoraproject.org> - 2.0.3-5
 - Don't try to re-implement D3D11 pieces which are already part of mingw-w64
 - Workaround a gcc compatibility issue
