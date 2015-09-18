@@ -2,7 +2,7 @@
 
 Name:           mingw-SDL2
 Version:        2.0.3
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        MinGW Windows port of SDL2 cross-platform multimedia library
 
 License:        LGPLv2+
@@ -50,11 +50,31 @@ Simple DirectMedia Layer (SDL) is a cross-platform multimedia library
 designed to provide fast access to the graphics frame buffer and audio
 device.
 
-# Win32
+# Win32 (static)
+%package -n mingw32-SDL2-static
+Summary:        MinGW Windows port of SDL cross-platform multimedia library
+Requires:       mingw32-SDL2 = %{version}-%{release}
+
+%description -n mingw32-SDL2-static
+Simple DirectMedia Layer (SDL) is a cross-platform multimedia library
+designed to provide fast access to the graphics frame buffer and audio
+device.
+
+# Win64
 %package -n mingw64-SDL2
 Summary:        MinGW Windows port of SDL cross-platform multimedia library
 
 %description -n mingw64-SDL2
+Simple DirectMedia Layer (SDL) is a cross-platform multimedia library
+designed to provide fast access to the graphics frame buffer and audio
+device.
+
+# Win64 (static)
+%package -n mingw64-SDL2-static
+Summary:        MinGW Windows port of SDL cross-platform multimedia library
+Requires:       mingw64-SDL2 = %{version}-%{release}
+
+%description -n mingw64-SDL2-static
 Simple DirectMedia Layer (SDL) is a cross-platform multimedia library
 designed to provide fast access to the graphics frame buffer and audio
 device.
@@ -78,9 +98,7 @@ dos2unix COPYING.txt README.txt
 %install
 %mingw_make DESTDIR=$RPM_BUILD_ROOT install
 
-# Remove static libraries but DON'T remove *.dll.a files.
-rm $RPM_BUILD_ROOT%{mingw32_libdir}/libSDL2.a
-rm $RPM_BUILD_ROOT%{mingw64_libdir}/libSDL2.a
+# Remove test library.
 rm $RPM_BUILD_ROOT%{mingw32_libdir}/libSDL2_test.a
 rm $RPM_BUILD_ROOT%{mingw64_libdir}/libSDL2_test.a
 
@@ -99,6 +117,10 @@ find $RPM_BUILD_ROOT -name "*.la" -delete
 %{mingw32_datadir}/aclocal/sdl2.m4
 %{mingw32_includedir}/SDL2
 
+# Win32 (static)
+%files -n mingw32-SDL2-static
+%{mingw32_libdir}/libSDL2.a
+
 # Win64
 %files -n mingw64-SDL2
 %doc README.txt COPYING.txt
@@ -110,8 +132,15 @@ find $RPM_BUILD_ROOT -name "*.la" -delete
 %{mingw64_datadir}/aclocal/sdl2.m4
 %{mingw64_includedir}/SDL2
 
+# Win64 (static)
+%files -n mingw64-SDL2-static
+%{mingw64_libdir}/libSDL2.a
+
 
 %changelog
+* Tue Sep 15 2015 Anonymous Maarten <anonymous.maarten@gmail.com> - 2.0.3-7
+- Added static package.
+
 * Wed Jun 17 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.0.3-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
