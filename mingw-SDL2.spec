@@ -6,7 +6,6 @@ Release:        1%{?dist}
 Summary:        MinGW Windows port of SDL2 cross-platform multimedia library
 
 License:        LGPLv2+
-Group:          Development/Libraries
 URL:            http://www.libsdl.org/
 Source0:        http://www.libsdl.org/release/SDL2-%{version}.tar.gz
 
@@ -133,6 +132,7 @@ find $RPM_BUILD_ROOT -name "*.la" -delete
 %changelog
 * Mon Oct 24 2016 Kalev Lember <klember@redhat.com> - 2.0.5-1
 - Update to 2.0.5
+- Don't set group tags
 
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.3-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
