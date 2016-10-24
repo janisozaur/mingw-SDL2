@@ -1,8 +1,8 @@
 %{?mingw_package_header}
 
 Name:           mingw-SDL2
-Version:        2.0.3
-Release:        8%{?dist}
+Version:        2.0.5
+Release:        1%{?dist}
 Summary:        MinGW Windows port of SDL2 cross-platform multimedia library
 
 License:        LGPLv2+
@@ -27,13 +27,6 @@ BuildRequires:  mingw64-gcc
 %ifarch %{ix86}
 BuildRequires: nasm
 %endif
-
-# Don't try to re-implement D3D11 pieces which are already part of mingw-w64
-Patch0:        SDL2-prevent-duplicate-d3d11-declarations.patch
-
-# Workaround a gcc compatibility issue
-Patch1:        SDL2-fix-gcc-compatibility.patch
-
 
 %description
 Simple DirectMedia Layer (SDL) is a cross-platform multimedia library
@@ -85,8 +78,6 @@ device.
 
 %prep
 %setup -q -n SDL2-%{version}
-%patch0 -p0 -b .d3d11
-%patch1 -p0 -b .gcc
 dos2unix COPYING.txt README.txt
 
 
@@ -113,6 +104,7 @@ find $RPM_BUILD_ROOT -name "*.la" -delete
 %{mingw32_bindir}/sdl2-config
 %{mingw32_libdir}/libSDL2.dll.a
 %{mingw32_libdir}/libSDL2main.a
+%{mingw32_libdir}/cmake/SDL2/
 %{mingw32_libdir}/pkgconfig/sdl2.pc
 %{mingw32_datadir}/aclocal/sdl2.m4
 %{mingw32_includedir}/SDL2
@@ -128,6 +120,7 @@ find $RPM_BUILD_ROOT -name "*.la" -delete
 %{mingw64_bindir}/sdl2-config
 %{mingw64_libdir}/libSDL2.dll.a
 %{mingw64_libdir}/libSDL2main.a
+%{mingw64_libdir}/cmake/SDL2/
 %{mingw64_libdir}/pkgconfig/sdl2.pc
 %{mingw64_datadir}/aclocal/sdl2.m4
 %{mingw64_includedir}/SDL2
@@ -138,6 +131,9 @@ find $RPM_BUILD_ROOT -name "*.la" -delete
 
 
 %changelog
+* Mon Oct 24 2016 Kalev Lember <klember@redhat.com> - 2.0.5-1
+- Update to 2.0.5
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.3-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
